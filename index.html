@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        table,tr,td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .error{
+            color: red;
+            display: none;
+        }
+    </style>
+    <h1>Bài 1</h1>
+    <div class="div_pr1">hello</div>
+    <button  type="button" class="btn_pr1">click</button>
+    <hr>
+    <br>
+    <h1>bài 2
+    </h1>
+    
+        <ul class="pr2_list">
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+            <li>item 4</li>
+            <li>item 5</li>
+            <li>item 6</li>
+            <li>item 7</li>
+        </ul>
+
+    <button class="pr2_btn">add</button>
+    <br>
+    <hr>
+    <h1>
+        bài 3
+
+    </h1>
+    <ul class="pr3_list">
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+        <li>item 5</li>
+        <li>item 6</li>
+        <li>item 7</li>
+    </ul>
+
+<button class="pr3_btn">add</button>
+<button class="remove">remove</button>
+<br>
+<hr>
+<h1>bài 4</h1>
+<table>
+    <tr>
+      <td>Tên đăng nhập:</td>
+      <td>
+        <input type="text" id="username" name="username">
+        <span id="usernameError" class="error"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>Mật khẩu:</td>
+      <td>
+        <input type="password" id="password" name="password">
+        <span id="passwordError" class="error"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>Nhập lại mật khẩu:</td>
+      <td>
+        <input type="password" id="confirmPassword" name="confirmPassword">
+        <span id="confirmPasswordError" class="error"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>Phone:</td>
+      <td>
+        <input type="text" id="phone" name="phone">
+        <span id="phoneError" class="error"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td>
+        <input type="email" id="email" name="email">
+        <span id="emailError" class="error"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>Địa chỉ:</td>
+      <td>
+        <input type="text" id="address" name="address">
+        <span id="addressError" class="error"></span>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td ><button type="button" onclick="validate()">Đăng ký</button></td>
+    </tr>
+  </table>
+
+</body>
+<script>
+    let pr1_div=document.querySelector('.div_pr1')
+    let pr1_btn=document.querySelector('.btn_pr1')
+    pr1_btn.addEventListener('click',()=>{
+        pr1_div.textContent = 'Bạn đã làm bài tập chưa'
+    })
+    /*==========lab 2==========*/
+    let pr2_list =document.querySelector('.pr2_list')
+    let pr2_btn = document.querySelector('.pr2_btn')
+    pr2_btn.addEventListener('click',()=>{
+        let newItem = document.createElement('li')
+        let newText = document.createTextNode('new item')
+        newItem.appendChild(newText)
+        pr2_list.appendChild(newItem)
+    })
+    /*==============lab 3=================*/
+    let pr3_list =document.querySelector('.pr3_list')
+    let pr3_btn = document.querySelector('.pr3_btn')
+    let remove = document.querySelector('.remove')
+    pr3_btn.addEventListener('click',()=>{
+        let newItem = document.createElement('li')
+        let newText = document.createTextNode('new item')
+        newItem.appendChild(newText)
+        pr3_list.appendChild(newItem)
+    })
+    remove.addEventListener('click',()=>{
+      
+        let lastItem = pr3_list.lastElementChild
+        if(lastItem && pr3_list.childElementCount>1){
+            pr3_list.removeChild(lastItem)
+        }
+    })
+    /*=============lab 4===============*/
+    let validate=()=>{
+        let username = document.getElementById('username').value
+        let password = document.getElementById('password').value
+        let email = document.getElementById('email').value
+        if(username.trim()===''){
+            let usernameError = document.getElementById('usernameError')
+            usernameError.style.display='block'
+            usernameError.textContent= 'Vui lòng kiểm tra lại Username'
+        } 
+        else{
+            document.getElementById('usernameError').style.display='none'
+        }
+        if(password.trim()===''){
+            let passwordError = document.getElementById('passwordError')
+            passwordError.style.display='block'
+            passwordError.textContent='Vui lòng kiểm tra lại password '
+
+        }
+        else{
+            document.getElementById('passwordError').style.display='none'
+        }
+        if(email.trim()===''||!validateEmail(email)){
+            let emailError = document.getElementById('emailError')
+            emailError.style.display='block'
+            emailError.textContent='Vui lòng kiểm tra lại email'
+        }
+        else{
+            document.getElementById('emailError').style.display='none'
+        }
+        return true
+    }
+    let validateEmail=(email)=>{
+         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+</script>
+</html>
